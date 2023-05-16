@@ -1,11 +1,17 @@
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import unoCss from 'unocss/vite';
 import AutoImport from 'unplugin-auto-import/vite';
 import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueJsx(),AutoImport({
+  plugins: [vue(), unoCss({
+		rules: [
+			['flex', {display: 'flex'}],
+			['red', {color: 'red'}]
+		]
+	}), vueJsx(),AutoImport({
 		// include: [
 		// 	/\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
 		// 	/\.vue$/,
@@ -23,4 +29,14 @@ export default defineConfig({
 		// 	globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
 		// }
 	})],
+	// vite.config.js
+
+	// css: {
+	// 	/* CSS 预处理器 */
+	// 	preprocessorOptions: {
+	// 		scss: {
+	// 			additionalData: '@import "src/assets/styles/var.scss";'
+	// 		}
+	// 	}
+	// }
 })
